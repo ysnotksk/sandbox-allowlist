@@ -1,0 +1,40 @@
+{
+  "profile": "workstation",
+  "description": "Everything this author's projects need: base + node + python + swift + containers + dev-tools, plus every active and candidate overlay domain.",
+  "ecosystems": [
+    "containers",
+    "defaults",
+    "dev-tools",
+    "github",
+    "node",
+    "node-cdns",
+    "playwright",
+    "python",
+    "python-native",
+    "swift"
+  ],
+  "engines": [
+    "claude",
+    "codex"
+  ],
+  "overlay": [
+    "api.notion.com",
+    "api.clickup.com",
+    "api.cloudflare.com",
+    "*.workers.dev",
+    "huggingface.co",
+    "cdn-lfs.huggingface.co",
+    "cdn-lfs-us-1.huggingface.co",
+    "api.houjin-bangou.nta.go.jp",
+    "info.gbiz.go.jp",
+    "api.vercel.com"
+  ],
+  "count": 148,
+  "upstream": {
+    "repository": "https://github.com/github/gh-aw",
+    "path": "pkg/workflow/data/ecosystem_domains.json",
+    "commit": "bd6aa2e0cc775e69e10d20be6d3d69706d50881b",
+    "fetched": "2026-09-24",
+    "license": "MIT (see LICENSE in this directory)"
+  }
+}

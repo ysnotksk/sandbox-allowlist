@@ -1,0 +1,23 @@
+{
+  "profile": "python",
+  "description": "base + PyPI, conda, and the native build toolchains.",
+  "ecosystems": [
+    "defaults",
+    "github",
+    "python",
+    "python-native"
+  ],
+  "engines": [
+    "claude",
+    "codex"
+  ],
+  "overlay": [],
+  "count": 76,
+  "upstream": {
+    "repository": "https://github.com/github/gh-aw",
+    "path": "pkg/workflow/data/ecosystem_domains.json",
+    "commit": "bd6aa2e0cc775e69e10d20be6d3d69706d50881b",
+    "fetched": "2026-09-24",
+    "license": "MIT (see LICENSE in this directory)"
+  }
+}

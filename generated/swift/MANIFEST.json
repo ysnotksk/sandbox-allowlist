@@ -1,0 +1,22 @@
+{
+  "profile": "swift",
+  "description": "base + Swift Package Index and Apple developer hosts.",
+  "ecosystems": [
+    "defaults",
+    "github",
+    "swift"
+  ],
+  "engines": [
+    "claude",
+    "codex"
+  ],
+  "overlay": [],
+  "count": 65,
+  "upstream": {
+    "repository": "https://github.com/github/gh-aw",
+    "path": "pkg/workflow/data/ecosystem_domains.json",
+    "commit": "bd6aa2e0cc775e69e10d20be6d3d69706d50881b",
+    "fetched": "2026-09-24",
+    "license": "MIT (see LICENSE in this directory)"
+  }
+}

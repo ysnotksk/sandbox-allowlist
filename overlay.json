@@ -1,0 +1,15 @@
+{
+  "$comment": "Domains this list adds on top of the gh-aw ecosystems. One entry per domain. status: active (confirmed blocked by a sandbox and needed) | candidate (expected, not yet confirmed) | retired (kept for history). Never list private hosts, internal endpoints or URLs with tokens.",
+  "domains": [
+    {"domain": "api.notion.com",            "category": "saas-api",     "purpose": "Notion API",                              "needed_by": ["notion"],           "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "api.clickup.com",           "category": "saas-api",     "purpose": "ClickUp API",                             "needed_by": ["clickup"],          "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "api.cloudflare.com",        "category": "cloud",        "purpose": "wrangler deploy / D1 / KV",               "needed_by": ["cloudflare-workers"], "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "*.workers.dev",             "category": "cloud",        "purpose": "Cloudflare Workers preview endpoints",    "needed_by": ["cloudflare-workers"], "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "huggingface.co",            "category": "model-hub",    "purpose": "model and dataset downloads",             "needed_by": ["ml"],               "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "cdn-lfs.huggingface.co",    "category": "model-hub",    "purpose": "Hugging Face LFS blobs",                  "needed_by": ["ml"],               "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "cdn-lfs-us-1.huggingface.co","category": "model-hub",   "purpose": "Hugging Face LFS blobs (US mirror)",      "needed_by": ["ml"],               "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "api.houjin-bangou.nta.go.jp","category": "public-api-jp","purpose": "法人番号システム Web-API (National Tax Agency)", "needed_by": ["houjin"],       "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "info.gbiz.go.jp",           "category": "public-api-jp","purpose": "gBizINFO REST API (METI)",                "needed_by": ["houjin"],           "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"},
+    {"domain": "api.vercel.com",            "category": "cloud",        "purpose": "Vercel CLI deploy",                       "needed_by": ["vercel"],           "evidence": "inferred from project stack", "added": "2026-09-24", "status": "candidate"}
+  ]
+}

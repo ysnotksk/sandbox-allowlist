@@ -1,0 +1,32 @@
+{
+  "$comment": "A profile is what one generated allowlist contains: gh-aw ecosystem keys, gh-aw engine-defaults keys, and which overlay statuses to include. Each profile is rendered into generated/<profile>/.",
+  "profiles": {
+    "base": {
+      "description": "Certificates, Ubuntu mirrors, GitHub, and the Claude / Codex engine endpoints. The floor every other profile builds on.",
+      "ecosystems": ["defaults", "github"],
+      "engines": ["claude", "codex"],
+      "overlay_statuses": []
+    },
+    "node": {
+      "description": "base + npm / yarn / pnpm / bun and the Node CDNs.",
+      "extends": "base",
+      "ecosystems": ["node", "node-cdns"]
+    },
+    "python": {
+      "description": "base + PyPI, conda, and the native build toolchains.",
+      "extends": "base",
+      "ecosystems": ["python", "python-native"]
+    },
+    "swift": {
+      "description": "base + Swift Package Index and Apple developer hosts.",
+      "extends": "base",
+      "ecosystems": ["swift"]
+    },
+    "workstation": {
+      "description": "Everything this author's projects need: base + node + python + swift + containers + dev-tools, plus every active and candidate overlay domain.",
+      "extends": "base",
+      "ecosystems": ["node", "node-cdns", "python", "python-native", "swift", "containers", "dev-tools", "playwright"],
+      "overlay_statuses": ["active", "candidate"]
+    }
+  }
+}

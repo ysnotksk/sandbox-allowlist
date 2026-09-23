@@ -1,0 +1,23 @@
+{
+  "profile": "node",
+  "description": "base + npm / yarn / pnpm / bun and the Node CDNs.",
+  "ecosystems": [
+    "defaults",
+    "github",
+    "node",
+    "node-cdns"
+  ],
+  "engines": [
+    "claude",
+    "codex"
+  ],
+  "overlay": [],
+  "count": 89,
+  "upstream": {
+    "repository": "https://github.com/github/gh-aw",
+    "path": "pkg/workflow/data/ecosystem_domains.json",
+    "commit": "bd6aa2e0cc775e69e10d20be6d3d69706d50881b",
+    "fetched": "2026-09-24",
+    "license": "MIT (see LICENSE in this directory)"
+  }
+}
