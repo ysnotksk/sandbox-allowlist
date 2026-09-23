@@ -10,7 +10,7 @@ Outputs per profile:
   domains.txt                 one domain per line, sorted (Squid, proxies, diffing)
   claude-code.settings.json   {"sandbox": {"network": {"allowedDomains": [...]}}} - merge into ~/.claude/settings.json
   srt-settings.json           {"network": {"allowedDomains": [...]}}            - ~/.srt-settings.json for sandbox-runtime
-  codex.config.toml           [network] allowed_domains = [...]                  - append to ~/.codex/config.toml (verify key names against current Codex docs)
+  codex.config.toml           [features.network_proxy.domains] host = "allow"    - merge into Codex config.toml
   MANIFEST.json               what went in: ecosystems, engines, overlay entries, upstream commit
 
 Standard library only. Run from anywhere: python3 scripts/build.py
@@ -78,7 +78,11 @@ def main():
         (out / "srt-settings.json").write_text(
             json.dumps({"network": {"allowedDomains": ordered}}, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8")
-        toml = "[network]\nallowed_domains = [\n" + "".join(f'  "{d}",\n' for d in ordered) + "]\n"
+        toml = (
+            "[features.network_proxy]\nenabled = true\n\n"
+            "[features.network_proxy.domains]\n"
+            + "".join(f'{json.dumps(d)} = "allow"\n' for d in ordered)
+        )
         (out / "codex.config.toml").write_text(toml, encoding="utf-8")
         (out / "MANIFEST.json").write_text(json.dumps({
             "profile": name,

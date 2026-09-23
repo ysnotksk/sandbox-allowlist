@@ -25,7 +25,7 @@ ecosystem-to-domain map. Nothing crosses vendors. This repository does:
   - `domains.txt` — one per line
   - `claude-code.settings.json` — `sandbox.network.allowedDomains`, to merge into `~/.claude/settings.json`
   - `srt-settings.json` — `~/.srt-settings.json` for sandbox-runtime
-  - `codex.config.toml` — `[network] allowed_domains` (check the key names against the current Codex docs before use)
+  - `codex.config.toml` — `features.network_proxy.domains` rules for sandboxed Codex commands
   - `MANIFEST.json` — what went in
 
 ## Use
@@ -38,6 +38,16 @@ jq -s '.[0] * .[1]' ~/.claude/settings.json generated/node/claude-code.settings.
 # sandbox-runtime
 cp generated/node/srt-settings.json ~/.srt-settings.json
 ```
+
+For Codex, merge a generated `codex.config.toml` into the config file for the
+environment you intend to use. The snippet enables the experimental network
+proxy and adds `allow` rules for the profile's hosts. Command network access
+must also be enabled in that environment (for example,
+`[sandbox_workspace_write] network_access = true` in `workspace-write` mode).
+Do not append the snippet if those TOML tables already exist; merge the keys
+instead. The proxy filters sandboxed command traffic only, not web search,
+apps, MCP servers, or other hosted tools. See the
+[Codex configuration reference](https://developers.openai.com/codex/config-reference).
 
 ## Add a domain
 

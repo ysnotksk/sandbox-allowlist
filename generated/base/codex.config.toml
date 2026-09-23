@@ -1,64 +1,65 @@
-[network]
-allowed_domains = [
-  "172.30.0.1",
-  "anthropic.com",
-  "api.anthropic.com",
-  "api.github.com",
-  "api.openai.com",
-  "api.snapcraft.io",
-  "archive.ubuntu.com",
-  "azure.archive.ubuntu.com",
-  "cdn.playwright.dev",
-  "chatgpt.com",
-  "codeload.github.com",
-  "crl.geotrust.com",
-  "crl.globalsign.com",
-  "crl.identrust.com",
-  "crl.sectigo.com",
-  "crl.thawte.com",
-  "crl.usertrust.com",
-  "crl.verisign.com",
-  "crl3.digicert.com",
-  "crl4.digicert.com",
-  "crls.ssl.com",
-  "docs.github.com",
-  "ghcr.io",
-  "github-cloud.githubusercontent.com",
-  "github-cloud.s3.amazonaws.com",
-  "github.blog",
-  "github.com",
-  "github.githubassets.com",
-  "*.githubusercontent.com",
-  "host.docker.internal",
-  "json-schema.org",
-  "json.schemastore.org",
-  "keyserver.ubuntu.com",
-  "lfs.github.com",
-  "objects.githubusercontent.com",
-  "ocsp.digicert.com",
-  "ocsp.geotrust.com",
-  "ocsp.globalsign.com",
-  "ocsp.identrust.com",
-  "ocsp.sectigo.com",
-  "ocsp.ssl.com",
-  "ocsp.thawte.com",
-  "ocsp.usertrust.com",
-  "ocsp.verisign.com",
-  "openai.com",
-  "packagecloud.io",
-  "packages.cloud.google.com",
-  "packages.microsoft.com",
-  "patch-diff.githubusercontent.com",
-  "patchdiff.githubusercontent.com",
-  "playwright.download.prss.microsoft.com",
-  "ppa.launchpad.net",
-  "raw.githubusercontent.com",
-  "s.symcb.com",
-  "s.symcd.com",
-  "security.ubuntu.com",
-  "sentry.io",
-  "statsig.anthropic.com",
-  "ts-crl.ws.symantec.com",
-  "ts-ocsp.ws.symantec.com",
-  "www.googleapis.com",
-]
+[features.network_proxy]
+enabled = true
+
+[features.network_proxy.domains]
+"172.30.0.1" = "allow"
+"anthropic.com" = "allow"
+"api.anthropic.com" = "allow"
+"api.github.com" = "allow"
+"api.openai.com" = "allow"
+"api.snapcraft.io" = "allow"
+"archive.ubuntu.com" = "allow"
+"azure.archive.ubuntu.com" = "allow"
+"cdn.playwright.dev" = "allow"
+"chatgpt.com" = "allow"
+"codeload.github.com" = "allow"
+"crl.geotrust.com" = "allow"
+"crl.globalsign.com" = "allow"
+"crl.identrust.com" = "allow"
+"crl.sectigo.com" = "allow"
+"crl.thawte.com" = "allow"
+"crl.usertrust.com" = "allow"
+"crl.verisign.com" = "allow"
+"crl3.digicert.com" = "allow"
+"crl4.digicert.com" = "allow"
+"crls.ssl.com" = "allow"
+"docs.github.com" = "allow"
+"ghcr.io" = "allow"
+"github-cloud.githubusercontent.com" = "allow"
+"github-cloud.s3.amazonaws.com" = "allow"
+"github.blog" = "allow"
+"github.com" = "allow"
+"github.githubassets.com" = "allow"
+"*.githubusercontent.com" = "allow"
+"host.docker.internal" = "allow"
+"json-schema.org" = "allow"
+"json.schemastore.org" = "allow"
+"keyserver.ubuntu.com" = "allow"
+"lfs.github.com" = "allow"
+"objects.githubusercontent.com" = "allow"
+"ocsp.digicert.com" = "allow"
+"ocsp.geotrust.com" = "allow"
+"ocsp.globalsign.com" = "allow"
+"ocsp.identrust.com" = "allow"
+"ocsp.sectigo.com" = "allow"
+"ocsp.ssl.com" = "allow"
+"ocsp.thawte.com" = "allow"
+"ocsp.usertrust.com" = "allow"
+"ocsp.verisign.com" = "allow"
+"openai.com" = "allow"
+"packagecloud.io" = "allow"
+"packages.cloud.google.com" = "allow"
+"packages.microsoft.com" = "allow"
+"patch-diff.githubusercontent.com" = "allow"
+"patchdiff.githubusercontent.com" = "allow"
+"playwright.download.prss.microsoft.com" = "allow"
+"ppa.launchpad.net" = "allow"
+"raw.githubusercontent.com" = "allow"
+"s.symcb.com" = "allow"
+"s.symcd.com" = "allow"
+"security.ubuntu.com" = "allow"
+"sentry.io" = "allow"
+"statsig.anthropic.com" = "allow"
+"ts-crl.ws.symantec.com" = "allow"
+"ts-ocsp.ws.symantec.com" = "allow"
+"www.googleapis.com" = "allow"

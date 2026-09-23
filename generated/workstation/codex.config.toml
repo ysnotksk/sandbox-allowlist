@@ -1,151 +1,152 @@
-[network]
-allowed_domains = [
-  "172.30.0.1",
-  "anaconda.org",
-  "anthropic.com",
-  "api.anthropic.com",
-  "api.clickup.com",
-  "api.cloudflare.com",
-  "api.github.com",
-  "api.houjin-bangou.nta.go.jp",
-  "api.notion.com",
-  "api.npms.io",
-  "api.openai.com",
-  "api.snapcraft.io",
-  "api.vercel.com",
-  "app.renovatebot.com",
-  "appveyor.com",
-  "archive.ubuntu.com",
-  "auth.docker.io",
-  "azure.archive.ubuntu.com",
-  "badgen.net",
-  "binstar.org",
-  "bootstrap.pypa.io",
-  "bun.sh",
-  "cdn-lfs-us-1.huggingface.co",
-  "cdn-lfs.huggingface.co",
-  "cdn.cocoapods.org",
-  "cdn.jsdelivr.net",
-  "cdn.playwright.dev",
-  "cdn.sheetjs.com",
-  "chatgpt.com",
-  "circleci.com",
-  "cocoapods.org",
-  "codacy.com",
-  "code.jquery.com",
-  "codeclimate.com",
-  "codecov.io",
-  "codeload.github.com",
-  "conda.anaconda.org",
-  "conda.binstar.org",
-  "coveralls.io",
-  "crates.io",
-  "crl.geotrust.com",
-  "crl.globalsign.com",
-  "crl.identrust.com",
-  "crl.sectigo.com",
-  "crl.thawte.com",
-  "crl.usertrust.com",
-  "crl.verisign.com",
-  "crl3.digicert.com",
-  "crl4.digicert.com",
-  "crls.ssl.com",
-  "data.jsdelivr.com",
-  "deb.nodesource.com",
-  "deepsource.io",
-  "deno.land",
-  "dl.k8s.io",
-  "*.docker.com",
-  "*.docker.io",
-  "docs.github.com",
-  "download.swift.org",
-  "drone.io",
-  "esm.sh",
-  "files.pythonhosted.org",
-  "gcr.io",
-  "get.pnpm.io",
-  "ghcr.io",
-  "github-cloud.githubusercontent.com",
-  "github-cloud.s3.amazonaws.com",
-  "github.blog",
-  "github.com",
-  "github.githubassets.com",
-  "*.githubusercontent.com",
-  "googleapis.deno.dev",
-  "googlechromelabs.github.io",
-  "host.docker.internal",
-  "huggingface.co",
-  "img.shields.io",
-  "index.crates.io",
-  "info.gbiz.go.jp",
-  "json-schema.org",
-  "json.schemastore.org",
-  "jsr.io",
-  "keyserver.ubuntu.com",
-  "lfs.github.com",
-  "mcr.microsoft.com",
-  "nodejs.org",
-  "npm.pkg.github.com",
-  "npmjs.com",
-  "npmjs.org",
-  "objects.githubusercontent.com",
-  "ocsp.digicert.com",
-  "ocsp.geotrust.com",
-  "ocsp.globalsign.com",
-  "ocsp.identrust.com",
-  "ocsp.sectigo.com",
-  "ocsp.ssl.com",
-  "ocsp.thawte.com",
-  "ocsp.usertrust.com",
-  "ocsp.verisign.com",
-  "openai.com",
-  "packagecloud.io",
-  "packages.cloud.google.com",
-  "packages.microsoft.com",
-  "patch-diff.githubusercontent.com",
-  "patchdiff.githubusercontent.com",
-  "pip.pypa.io",
-  "pkgs.k8s.io",
-  "playwright.download.prss.microsoft.com",
-  "ppa.launchpad.net",
-  "production.cloudflare.docker.com",
-  "pypi.org",
-  "pypi.python.org",
-  "*.pythonhosted.org",
-  "quay.io",
-  "raw.githubusercontent.com",
-  "readthedocs.io",
-  "readthedocs.org",
-  "registry.bower.io",
-  "registry.hub.docker.com",
-  "registry.npmjs.com",
-  "registry.npmjs.org",
-  "registry.yarnpkg.com",
-  "renovatebot.com",
-  "repo.anaconda.com",
-  "repo.continuum.io",
-  "repo.yarnpkg.com",
-  "s.symcb.com",
-  "s.symcd.com",
-  "security.ubuntu.com",
-  "semaphoreci.com",
-  "sentry.io",
-  "shields.io",
-  "skimdb.npmjs.com",
-  "snyk.io",
-  "sonarcloud.io",
-  "sonarqube.com",
-  "static.crates.io",
-  "statsig.anthropic.com",
-  "storage.googleapis.com",
-  "swift.org",
-  "telemetry.vercel.com",
-  "travis-ci.com",
-  "ts-crl.ws.symantec.com",
-  "ts-ocsp.ws.symantec.com",
-  "*.workers.dev",
-  "www.googleapis.com",
-  "www.npmjs.com",
-  "www.npmjs.org",
-  "yarnpkg.com",
-]
+[features.network_proxy]
+enabled = true
+
+[features.network_proxy.domains]
+"172.30.0.1" = "allow"
+"anaconda.org" = "allow"
+"anthropic.com" = "allow"
+"api.anthropic.com" = "allow"
+"api.clickup.com" = "allow"
+"api.cloudflare.com" = "allow"
+"api.github.com" = "allow"
+"api.houjin-bangou.nta.go.jp" = "allow"
+"api.notion.com" = "allow"
+"api.npms.io" = "allow"
+"api.openai.com" = "allow"
+"api.snapcraft.io" = "allow"
+"api.vercel.com" = "allow"
+"app.renovatebot.com" = "allow"
+"appveyor.com" = "allow"
+"archive.ubuntu.com" = "allow"
+"auth.docker.io" = "allow"
+"azure.archive.ubuntu.com" = "allow"
+"badgen.net" = "allow"
+"binstar.org" = "allow"
+"bootstrap.pypa.io" = "allow"
+"bun.sh" = "allow"
+"cdn-lfs-us-1.huggingface.co" = "allow"
+"cdn-lfs.huggingface.co" = "allow"
+"cdn.cocoapods.org" = "allow"
+"cdn.jsdelivr.net" = "allow"
+"cdn.playwright.dev" = "allow"
+"cdn.sheetjs.com" = "allow"
+"chatgpt.com" = "allow"
+"circleci.com" = "allow"
+"cocoapods.org" = "allow"
+"codacy.com" = "allow"
+"code.jquery.com" = "allow"
+"codeclimate.com" = "allow"
+"codecov.io" = "allow"
+"codeload.github.com" = "allow"
+"conda.anaconda.org" = "allow"
+"conda.binstar.org" = "allow"
+"coveralls.io" = "allow"
+"crates.io" = "allow"
+"crl.geotrust.com" = "allow"
+"crl.globalsign.com" = "allow"
+"crl.identrust.com" = "allow"
+"crl.sectigo.com" = "allow"
+"crl.thawte.com" = "allow"
+"crl.usertrust.com" = "allow"
+"crl.verisign.com" = "allow"
+"crl3.digicert.com" = "allow"
+"crl4.digicert.com" = "allow"
+"crls.ssl.com" = "allow"
+"data.jsdelivr.com" = "allow"
+"deb.nodesource.com" = "allow"
+"deepsource.io" = "allow"
+"deno.land" = "allow"
+"dl.k8s.io" = "allow"
+"*.docker.com" = "allow"
+"*.docker.io" = "allow"
+"docs.github.com" = "allow"
+"download.swift.org" = "allow"
+"drone.io" = "allow"
+"esm.sh" = "allow"
+"files.pythonhosted.org" = "allow"
+"gcr.io" = "allow"
+"get.pnpm.io" = "allow"
+"ghcr.io" = "allow"
+"github-cloud.githubusercontent.com" = "allow"
+"github-cloud.s3.amazonaws.com" = "allow"
+"github.blog" = "allow"
+"github.com" = "allow"
+"github.githubassets.com" = "allow"
+"*.githubusercontent.com" = "allow"
+"googleapis.deno.dev" = "allow"
+"googlechromelabs.github.io" = "allow"
+"host.docker.internal" = "allow"
+"huggingface.co" = "allow"
+"img.shields.io" = "allow"
+"index.crates.io" = "allow"
+"info.gbiz.go.jp" = "allow"
+"json-schema.org" = "allow"
+"json.schemastore.org" = "allow"
+"jsr.io" = "allow"
+"keyserver.ubuntu.com" = "allow"
+"lfs.github.com" = "allow"
+"mcr.microsoft.com" = "allow"
+"nodejs.org" = "allow"
+"npm.pkg.github.com" = "allow"
+"npmjs.com" = "allow"
+"npmjs.org" = "allow"
+"objects.githubusercontent.com" = "allow"
+"ocsp.digicert.com" = "allow"
+"ocsp.geotrust.com" = "allow"
+"ocsp.globalsign.com" = "allow"
+"ocsp.identrust.com" = "allow"
+"ocsp.sectigo.com" = "allow"
+"ocsp.ssl.com" = "allow"
+"ocsp.thawte.com" = "allow"
+"ocsp.usertrust.com" = "allow"
+"ocsp.verisign.com" = "allow"
+"openai.com" = "allow"
+"packagecloud.io" = "allow"
+"packages.cloud.google.com" = "allow"
+"packages.microsoft.com" = "allow"
+"patch-diff.githubusercontent.com" = "allow"
+"patchdiff.githubusercontent.com" = "allow"
+"pip.pypa.io" = "allow"
+"pkgs.k8s.io" = "allow"
+"playwright.download.prss.microsoft.com" = "allow"
+"ppa.launchpad.net" = "allow"
+"production.cloudflare.docker.com" = "allow"
+"pypi.org" = "allow"
+"pypi.python.org" = "allow"
+"*.pythonhosted.org" = "allow"
+"quay.io" = "allow"
+"raw.githubusercontent.com" = "allow"
+"readthedocs.io" = "allow"
+"readthedocs.org" = "allow"
+"registry.bower.io" = "allow"
+"registry.hub.docker.com" = "allow"
+"registry.npmjs.com" = "allow"
+"registry.npmjs.org" = "allow"
+"registry.yarnpkg.com" = "allow"
+"renovatebot.com" = "allow"
+"repo.anaconda.com" = "allow"
+"repo.continuum.io" = "allow"
+"repo.yarnpkg.com" = "allow"
+"s.symcb.com" = "allow"
+"s.symcd.com" = "allow"
+"security.ubuntu.com" = "allow"
+"semaphoreci.com" = "allow"
+"sentry.io" = "allow"
+"shields.io" = "allow"
+"skimdb.npmjs.com" = "allow"
+"snyk.io" = "allow"
+"sonarcloud.io" = "allow"
+"sonarqube.com" = "allow"
+"static.crates.io" = "allow"
+"statsig.anthropic.com" = "allow"
+"storage.googleapis.com" = "allow"
+"swift.org" = "allow"
+"telemetry.vercel.com" = "allow"
+"travis-ci.com" = "allow"
+"ts-crl.ws.symantec.com" = "allow"
+"ts-ocsp.ws.symantec.com" = "allow"
+"*.workers.dev" = "allow"
+"www.googleapis.com" = "allow"
+"www.npmjs.com" = "allow"
+"www.npmjs.org" = "allow"
+"yarnpkg.com" = "allow"
