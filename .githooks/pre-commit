@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# ci-kit v1 (ysnotksk/ci-kit): edit there and re-sync, not here.
+# Stops secrets before they are committed, so they never reach GitHub:
+#   1. sensitive files by name (.env*, keys, certificates, keystores, .netrc ...)
+#   2. an npm auth credential inside a committed .npmrc
+#   3. gitleaks on the staged changes (skipped with a warning if not installed)
+# Then runs .githooks/pre-commit.local, the repository's own checks, if present.
+# Bypass for a deliberate exception: git commit --no-verify
+set -uo pipefail
+
+red=$'\033[0;31m'; yellow=$'\033[1;33m'; off=$'\033[0m'
+errors=0
+
+while IFS= read -r -d '' file; do
+  case "$(basename "$file")" in
+    .env.example|.env.sample|.env.template) continue ;;
+    .env|.env.*|*.key|*.pem|*.p12|*.pfx|*.crt|*.cer|*.gpg|*.pgp|*.jks|*.keystore) ;;
+    .netrc|_netrc|.pypirc|id_rsa|id_dsa|id_ecdsa|id_ed25519) ;;
+    *) continue ;;
+  esac
+  echo "${red}blocked: $file (sensitive file; add it to .gitignore or unstage it)${off}"
+  errors=$((errors + 1))
+done < <(git diff --cached --name-only --diff-filter=ACM -z)
+
+while IFS= read -r -d '' file; do
+  case "$file" in .npmrc|*/.npmrc) ;; *) continue ;; esac
+  if git show ":$file" 2>/dev/null | grep -qE '_authToken|_auth[[:space:]]*=|_password[[:space:]]*='; then
+    echo "${red}blocked: $file carries an npm auth credential (use ~/.npmrc or an env reference)${off}"
+    errors=$((errors + 1))
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM -z)
+
+if [ "$errors" -gt 0 ]; then
+  echo "${red}commit aborted: $errors problem(s)${off}"
+  exit 1
+fi
+
+gitleaks_bin=$(command -v gitleaks || true)
+[ -z "$gitleaks_bin" ] && [ -x "$HOME/.local/bin/gitleaks" ] && gitleaks_bin="$HOME/.local/bin/gitleaks"
+if [ -n "$gitleaks_bin" ]; then
+  if ! "$gitleaks_bin" git --pre-commit --staged --redact --no-banner --log-level error; then
+    echo "${red}commit aborted: gitleaks found a secret in the staged changes${off}"
+    exit 1
+  fi
+else
+  echo "${yellow}pre-commit: gitleaks is not installed; secret scan skipped (brew install gitleaks)${off}"
+fi
+
+local_hook="$(git rev-parse --show-toplevel)/.githooks/pre-commit.local"
+if [ -f "$local_hook" ]; then
+  [ -x "$local_hook" ] || { echo "${red}.githooks/pre-commit.local must be executable${off}"; exit 1; }
+  exec "$local_hook" "$@"
+fi
+exit 0
