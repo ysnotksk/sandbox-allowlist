@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash tools/worktrees.sh",
+            "timeout": 180
+          }
+        ]
+      }
+    ]
+  }
+}

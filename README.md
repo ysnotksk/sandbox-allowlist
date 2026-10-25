@@ -72,3 +72,5 @@ Not accepted: internal or personal hosts, URLs carrying tokens, `*` or
 ## License
 
 MIT. `upstream/gh-aw/` is MIT from GitHub, Inc. (see the LICENSE there).
+
+Fold your task worktree at merge or abandonment; run `bash tools/worktrees.sh` (freshly fetched base, merged and clean only; keep locked or detached trees). See `docs/WORKTREE_LIFECYCLE.md`.

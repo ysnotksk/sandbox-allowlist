@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Preserve native post-merge behavior, then fold safe task checkouts.
+root="$(git rev-parse --show-toplevel)" || exit 0
+common="$(git rev-parse --path-format=absolute --git-common-dir)" || exit 0
+native="$common/hooks/post-merge"
+if [ -x "$native" ] && [ "$native" != "$0" ]; then
+  "$native" "$@" || echo 'post-merge: native hook reported a failure' >&2
+fi
+if [ -f "$root/tools/worktrees.sh" ]; then
+  bash "$root/tools/worktrees.sh" || echo 'post-merge: sweep kept worktrees; inspect output' >&2
+fi
