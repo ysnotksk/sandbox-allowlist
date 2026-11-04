@@ -11,12 +11,11 @@ import sys
 import tempfile
 import filecmp
 from pathlib import Path
+from policy import check_domain, source_domains
 
 ROOT = Path(__file__).resolve().parent.parent
-DOMAIN = re.compile(r"^(\*\.)?([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$")
 FIELDS = {"domain", "category", "purpose", "needed_by", "evidence", "added", "status"}
 STATUSES = {"active", "candidate", "retired"}
-PRIVATE = re.compile(r"(^|\.)(localhost|local|internal|corp|lan|home|test|example)$|^\d+\.\d+\.\d+\.\d+$")
 
 
 def fail(msg):
@@ -32,12 +31,10 @@ def main():
         if missing:
             fail(f"{e.get('domain')}: missing fields {sorted(missing)}")
         d = e["domain"]
-        if not DOMAIN.match(d):
-            fail(f"{d}: not a bare host name (no scheme, path, port, or uppercase)")
-        if d == "*" or d.startswith("*.") and d.count(".") < 2:
-            fail(f"{d}: wildcard too broad")
-        if PRIVATE.search(d):
-            fail(f"{d}: looks private or local; this list is public")
+        try:
+            check_domain(d)
+        except ValueError as exc:
+            fail(str(exc))
         if d in seen:
             fail(f"{d}: duplicate")
         seen.add(d)
@@ -49,7 +46,13 @@ def main():
             fail(f"{d}: evidence is empty")
 
     data = json.loads((ROOT / "upstream" / "gh-aw" / "ecosystem_domains.json").read_text(encoding="utf-8"))
-    upstream = {x for v in data["ecosystems"].values() for x in v} | {x for v in data["engine-defaults"].values() for x in v}
+    exclusions = json.loads((ROOT / "policy.json").read_text())["excluded_domains"]
+    if any(not isinstance(reason, str) or not reason.strip() for reason in exclusions.values()):
+        fail("each exclusion needs a review reason")
+    try:
+        upstream = source_domains(data, exclusions)
+    except ValueError as exc:
+        fail(str(exc))
     dup = seen & upstream
     if dup:
         fail(f"already in upstream gh-aw, drop from overlay: {sorted(dup)}")
@@ -63,6 +66,21 @@ def main():
                 have = ROOT / "generated" / prof.name / f.name
                 if not have.exists() or not filecmp.cmp(f, have, shallow=False):
                     fail(f"generated/{prof.name}/{f.name} is stale; run python3 scripts/build.py")
+    expected_profiles = set(json.loads((ROOT / "profiles.json").read_text())["profiles"])
+    actual_profiles = {p.name for p in (ROOT / "generated").iterdir()}
+    if expected_profiles != actual_profiles:
+        fail("generated profiles contain missing or unexpected entries")
+    for name in expected_profiles:
+        expected_files = {"domains.txt", "claude-code.settings.json", "srt-settings.json", "codex.config.toml", "MANIFEST.json"}
+        if {p.name for p in (ROOT / "generated" / name).iterdir()} != expected_files:
+            fail(f"generated/{name}: unexpected or missing file")
+        for domain in (ROOT / "generated" / name / "domains.txt").read_text().splitlines():
+            try:
+                check_domain(domain)
+            except ValueError as exc:
+                fail(str(exc))
+            if domain in exclusions:
+                fail(f"{name}: excluded domain {domain}")
     print(f"validate: ok ({len(overlay)} overlay entries)")
 
 

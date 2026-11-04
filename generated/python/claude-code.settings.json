@@ -2,7 +2,6 @@
   "sandbox": {
     "network": {
       "allowedDomains": [
-        "172.30.0.1",
         "anaconda.org",
         "anthropic.com",
         "api.anthropic.com",
@@ -38,7 +37,6 @@
         "github.com",
         "github.githubassets.com",
         "*.githubusercontent.com",
-        "host.docker.internal",
         "index.crates.io",
         "json-schema.org",
         "json.schemastore.org",
@@ -74,7 +72,6 @@
         "security.ubuntu.com",
         "sentry.io",
         "static.crates.io",
-        "statsig.anthropic.com",
         "ts-crl.ws.symantec.com",
         "ts-ocsp.ws.symantec.com",
         "www.googleapis.com"

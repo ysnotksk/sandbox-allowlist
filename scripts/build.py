@@ -19,6 +19,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from policy import check_domain, source_domains
 
 ROOT = Path(__file__).resolve().parent.parent
 UPSTREAM = ROOT / "upstream" / "gh-aw"
@@ -54,6 +55,10 @@ def main():
     overlay = load(ROOT / "overlay.json")["domains"]
     profiles = load(ROOT / "profiles.json")["profiles"]
 
+    exclusions = load(ROOT / "policy.json")["excluded_domains"]
+    source_domains(data, exclusions)
+    for entry in overlay:
+        check_domain(entry['domain'])
     for name in profiles:
         r = resolve(profiles, name)
         domains = set()
@@ -67,6 +72,12 @@ def main():
             domains.update(data["engine-defaults"][eng])
         used_overlay = [d for d in overlay if d["status"] in r["overlay_statuses"]]
         domains.update(d["domain"] for d in used_overlay)
+        if set(r["overlay_statuses"]) - {"active"}:
+            sys.exit(f"profile {name}: production profiles may include active overlay entries only")
+        excluded = sorted(domains & set(exclusions))
+        domains.difference_update(exclusions)
+        for domain in domains:
+            check_domain(domain)
         ordered = sorted(domains, key=lambda s: s.lstrip("*."))
 
         out = Path(os.environ.get("SANDBOX_ALLOWLIST_OUT", ROOT / "generated")) / name
@@ -91,6 +102,8 @@ def main():
             "engines": sorted(set(r["engines"])),
             "overlay": [d["domain"] for d in used_overlay],
             "count": len(ordered),
+            "excluded": {d: exclusions[d] for d in excluded},
+            "trust_boundary": "Development connectivity only; shared hosts may serve arbitrary tenants. Not a safe-content or exfiltration guarantee.",
             "upstream": source,
         }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"{name:12s} {len(ordered):4d} domains")

@@ -1,10 +1,9 @@
 {
   "profile": "workstation",
-  "description": "Everything this author's projects need: base + node + python + swift + containers + dev-tools, plus every active and candidate overlay domain.",
+  "description": "Development dependencies: base + node + python + swift + containers + playwright. Active overlay only; optional dev-tools ecosystem requires a separately reviewed profile.",
   "ecosystems": [
     "containers",
     "defaults",
-    "dev-tools",
     "github",
     "node",
     "node-cdns",
@@ -17,19 +16,15 @@
     "claude",
     "codex"
   ],
-  "overlay": [
-    "api.notion.com",
-    "api.clickup.com",
-    "api.cloudflare.com",
-    "*.workers.dev",
-    "huggingface.co",
-    "cdn-lfs.huggingface.co",
-    "cdn-lfs-us-1.huggingface.co",
-    "api.houjin-bangou.nta.go.jp",
-    "info.gbiz.go.jp",
-    "api.vercel.com"
-  ],
-  "count": 148,
+  "overlay": [],
+  "count": 114,
+  "excluded": {
+    "172.30.0.1": "Private network address, not a public development endpoint",
+    "host.docker.internal": "Host access requires a separate environment-specific decision",
+    "statsig.anthropic.com": "Telemetry is not required by this default dependency policy",
+    "telemetry.vercel.com": "Telemetry is not required by this default dependency policy"
+  },
+  "trust_boundary": "Development connectivity only; shared hosts may serve arbitrary tenants. Not a safe-content or exfiltration guarantee.",
   "upstream": {
     "repository": "https://github.com/github/gh-aw",
     "path": "pkg/workflow/data/ecosystem_domains.json",

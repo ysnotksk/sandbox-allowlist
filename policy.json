@@ -1,0 +1,11 @@
+{
+  "excluded_domains": {
+    "127.0.0.1": "Loopback access requires a separate environment-specific decision",
+    "172.30.0.1": "Private network address, not a public development endpoint",
+    "::1": "Loopback access requires a separate environment-specific decision",
+    "localhost": "Loopback access requires a separate environment-specific decision",
+    "host.docker.internal": "Host access requires a separate environment-specific decision",
+    "statsig.anthropic.com": "Telemetry is not required by this default dependency policy",
+    "telemetry.vercel.com": "Telemetry is not required by this default dependency policy"
+  }
+}

@@ -3,30 +3,54 @@
   "profiles": {
     "base": {
       "description": "Certificates, Ubuntu mirrors, GitHub, and the Claude / Codex engine endpoints. The floor every other profile builds on.",
-      "ecosystems": ["defaults", "github"],
-      "engines": ["claude", "codex"],
+      "ecosystems": [
+        "defaults",
+        "github"
+      ],
+      "engines": [
+        "claude",
+        "codex"
+      ],
       "overlay_statuses": []
     },
     "node": {
       "description": "base + npm / yarn / pnpm / bun and the Node CDNs.",
       "extends": "base",
-      "ecosystems": ["node", "node-cdns"]
+      "ecosystems": [
+        "node",
+        "node-cdns"
+      ]
     },
     "python": {
       "description": "base + PyPI, conda, and the native build toolchains.",
       "extends": "base",
-      "ecosystems": ["python", "python-native"]
+      "ecosystems": [
+        "python",
+        "python-native"
+      ]
     },
     "swift": {
       "description": "base + Swift Package Index and Apple developer hosts.",
       "extends": "base",
-      "ecosystems": ["swift"]
+      "ecosystems": [
+        "swift"
+      ]
     },
     "workstation": {
-      "description": "Everything this author's projects need: base + node + python + swift + containers + dev-tools, plus every active and candidate overlay domain.",
+      "description": "Development dependencies: base + node + python + swift + containers + playwright. Active overlay only; optional dev-tools ecosystem requires a separately reviewed profile.",
       "extends": "base",
-      "ecosystems": ["node", "node-cdns", "python", "python-native", "swift", "containers", "dev-tools", "playwright"],
-      "overlay_statuses": ["active", "candidate"]
+      "ecosystems": [
+        "node",
+        "node-cdns",
+        "python",
+        "python-native",
+        "swift",
+        "containers",
+        "playwright"
+      ],
+      "overlay_statuses": [
+        "active"
+      ]
     }
   }
 }

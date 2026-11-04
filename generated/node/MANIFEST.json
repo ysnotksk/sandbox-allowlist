@@ -12,7 +12,14 @@
     "codex"
   ],
   "overlay": [],
-  "count": 89,
+  "count": 85,
+  "excluded": {
+    "172.30.0.1": "Private network address, not a public development endpoint",
+    "host.docker.internal": "Host access requires a separate environment-specific decision",
+    "statsig.anthropic.com": "Telemetry is not required by this default dependency policy",
+    "telemetry.vercel.com": "Telemetry is not required by this default dependency policy"
+  },
+  "trust_boundary": "Development connectivity only; shared hosts may serve arbitrary tenants. Not a safe-content or exfiltration guarantee.",
   "upstream": {
     "repository": "https://github.com/github/gh-aw",
     "path": "pkg/workflow/data/ecosystem_domains.json",

@@ -1,4 +1,3 @@
-172.30.0.1
 anthropic.com
 api.anthropic.com
 api.github.com
@@ -27,7 +26,6 @@ github.blog
 github.com
 github.githubassets.com
 *.githubusercontent.com
-host.docker.internal
 json-schema.org
 json.schemastore.org
 keyserver.ubuntu.com
@@ -55,7 +53,6 @@ s.symcb.com
 s.symcd.com
 security.ubuntu.com
 sentry.io
-statsig.anthropic.com
 ts-crl.ws.symantec.com
 ts-ocsp.ws.symantec.com
 www.googleapis.com

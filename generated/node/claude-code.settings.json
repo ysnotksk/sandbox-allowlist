@@ -2,7 +2,6 @@
   "sandbox": {
     "network": {
       "allowedDomains": [
-        "172.30.0.1",
         "anthropic.com",
         "api.anthropic.com",
         "api.github.com",
@@ -43,7 +42,6 @@
         "*.githubusercontent.com",
         "googleapis.deno.dev",
         "googlechromelabs.github.io",
-        "host.docker.internal",
         "json-schema.org",
         "json.schemastore.org",
         "jsr.io",
@@ -82,9 +80,7 @@
         "security.ubuntu.com",
         "sentry.io",
         "skimdb.npmjs.com",
-        "statsig.anthropic.com",
         "storage.googleapis.com",
-        "telemetry.vercel.com",
         "ts-crl.ws.symantec.com",
         "ts-ocsp.ws.symantec.com",
         "www.googleapis.com",

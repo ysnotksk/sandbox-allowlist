@@ -2,7 +2,6 @@
 enabled = true
 
 [features.network_proxy.domains]
-"172.30.0.1" = "allow"
 "anthropic.com" = "allow"
 "api.anthropic.com" = "allow"
 "api.github.com" = "allow"
@@ -43,7 +42,6 @@ enabled = true
 "*.githubusercontent.com" = "allow"
 "googleapis.deno.dev" = "allow"
 "googlechromelabs.github.io" = "allow"
-"host.docker.internal" = "allow"
 "json-schema.org" = "allow"
 "json.schemastore.org" = "allow"
 "jsr.io" = "allow"
@@ -82,9 +80,7 @@ enabled = true
 "security.ubuntu.com" = "allow"
 "sentry.io" = "allow"
 "skimdb.npmjs.com" = "allow"
-"statsig.anthropic.com" = "allow"
 "storage.googleapis.com" = "allow"
-"telemetry.vercel.com" = "allow"
 "ts-crl.ws.symantec.com" = "allow"
 "ts-ocsp.ws.symantec.com" = "allow"
 "www.googleapis.com" = "allow"
