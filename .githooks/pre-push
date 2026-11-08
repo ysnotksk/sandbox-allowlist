@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# ci-kit v1 (ysnotksk/ci-kit): edit there and re-sync, not here.
+# Last local barrier before commits reach GitHub: gitleaks on the commits
+# each pushed ref would add to the remote, so a secret that got past a
+# missing or bypassed (--no-verify) pre-commit is still stopped here.
+#   updated refs: <remote_sha>..<local_sha>
+#   new refs:     commits not on any remote-tracking branch
+# Skipped with a warning if gitleaks is not installed.
+# Then runs .githooks/pre-push.local, the repository's own checks, if present.
+# Bypass for a deliberate exception: git push --no-verify
+set -uo pipefail
+
+red=$'\033[0;31m'; yellow=$'\033[1;33m'; off=$'\033[0m'
+zero=0000000000000000000000000000000000000000
+
+ranges=()
+while read -r _local_ref local_sha _remote_ref remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue   # ref deletion: nothing is pushed
+  if [ "$remote_sha" != "$zero" ]; then
+    ranges+=("$remote_sha..$local_sha")
+  else
+    ranges+=("$local_sha --not --remotes")
+  fi
+done
+
+gitleaks_bin=$(command -v gitleaks || true)
+[ -z "$gitleaks_bin" ] && [ -x "$HOME/.local/bin/gitleaks" ] && gitleaks_bin="$HOME/.local/bin/gitleaks"
+if [ -n "$gitleaks_bin" ]; then
+  for range in ${ranges[@]+"${ranges[@]}"}; do
+    if ! "$gitleaks_bin" git --log-opts="$range" --redact --no-banner --log-level error; then
+      echo "${red}push aborted: gitleaks found a secret in commits being pushed ($range)${off}" >&2
+      echo "  Remove it from the commits (rebase/amend) or rotate it; git push --no-verify to force." >&2
+      exit 1
+    fi
+  done
+else
+  echo "${yellow}pre-push: gitleaks is not installed; outgoing secret scan skipped (brew install gitleaks)${off}" >&2
+fi
+
+local_hook="$(git rev-parse --show-toplevel)/.githooks/pre-push.local"
+if [ -f "$local_hook" ]; then
+  [ -x "$local_hook" ] || { echo "${red}.githooks/pre-push.local must be executable${off}" >&2; exit 1; }
+  exec "$local_hook" "$@"
+fi
+exit 0
